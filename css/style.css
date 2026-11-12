@@ -729,3 +729,84 @@ a:focus-visible {
         height: 31px;
     }
 }
+/* ==========================================
+   AQLAM LOGO - 3D FLIP ANIMATION
+========================================== */
+
+.logo-wrapper {
+    perspective: 1000px;
+}
+
+.logo-flip {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: logoFlip 7s ease-in-out infinite;
+}
+
+.logo-face {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.logo-face-front {
+    background: #FFFFFF;
+}
+
+.logo-face-front .logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.logo-face-back {
+    transform: rotateY(180deg);
+
+    background: linear-gradient(
+        145deg,
+        #F600DF,
+        #BD00A9
+    );
+
+    color: #FFFFFF;
+    text-align: center;
+    padding: 8px;
+}
+
+.logo-face-back span {
+    font-family: "Cairo", sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.7;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes logoFlip {
+    0%, 35% {
+        transform: rotateY(0deg);
+    }
+
+    45%, 85% {
+        transform: rotateY(180deg);
+    }
+
+    95%, 100% {
+        transform: rotateY(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .logo-flip {
+        animation: none;
+    }
+}
