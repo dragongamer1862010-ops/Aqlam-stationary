@@ -46,6 +46,7 @@ html {
 body {
     font-family: "Cairo", sans-serif;
     color: var(--text);
+
     background:
         radial-gradient(
             circle at 90% 5%,
@@ -154,6 +155,7 @@ a {
     box-shadow: 0 7px 25px rgba(0,0,0,0.15);
 
     transition: var(--transition);
+    perspective: 1000px;
 }
 
 .logo-wrapper:hover {
@@ -202,11 +204,148 @@ section {
     margin: 5px auto 0;
 
     border-radius: 20px;
+
     background: linear-gradient(
         90deg,
         #BD00A9,
         #F600DF
     );
+}
+
+
+/* ==========================================
+   SERVICES SECTION
+========================================== */
+
+.services-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 20px 14px;
+
+    background: rgba(255,255,255,0.94);
+
+    border: 1px solid rgba(246,0,223,0.10);
+    border-radius: var(--radius);
+
+    box-shadow: var(--card-shadow);
+
+    transition: var(--transition);
+}
+
+.services-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-hover-shadow);
+    border-color: rgba(246,0,223,0.20);
+}
+
+.services-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 19px 10px;
+}
+
+.offered-service {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 9px 3px;
+
+    text-align: center;
+
+    border-radius: 16px;
+
+    transition: var(--transition);
+
+    cursor: default;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.service-logo {
+    width: 57px;
+    height: 57px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    font-size: 25px;
+
+    transition: var(--transition);
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.045);
+}
+
+.offered-service span {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text);
+
+    line-height: 1.7;
+
+    transition: var(--transition);
+}
+
+/* Service Icon Colors */
+
+.printing-logo {
+    color: #BD00A9;
+    background: #FFF0FD;
+    border: 1px solid #FAD8F6;
+}
+
+.photocopy-logo {
+    color: #1877F2;
+    background: #EFF6FF;
+    border: 1px solid #D8E8FF;
+}
+
+.binding-logo {
+    color: #8B5ACB;
+    background: #F5F0FF;
+    border: 1px solid #E8DEFF;
+}
+
+.books-logo {
+    color: #E69B24;
+    background: #FFF8E9;
+    border: 1px solid #F9E9C9;
+}
+
+.stationery-logo {
+    color: #20A875;
+    background: #EDFFF6;
+    border: 1px solid #D5F7E5;
+}
+
+.gifts-logo {
+    color: #E75B86;
+    background: #FFF0F5;
+    border: 1px solid #F9DCE7;
+}
+
+/* Services Hover */
+
+.offered-service:hover .service-logo {
+    transform: translateY(-6px) scale(1.09) rotate(-5deg);
+
+    box-shadow:
+        0 10px 20px rgba(246,0,223,0.12);
+}
+
+.offered-service:hover span {
+    color: var(--primary-dark);
 }
 
 
@@ -420,6 +559,26 @@ section {
 }
 
 
+/* WHATSAPP CHANNEL */
+
+.whatsapp-channel {
+    color: #20C96B;
+    background: #EDFFF4;
+    border: 1px solid #D5F7E2;
+}
+
+.whatsapp-channel:hover {
+    background: #20C96B;
+    color: white;
+    border-color: #20C96B;
+
+    transform: translateY(-5px) scale(1.05);
+
+    box-shadow:
+        0 10px 22px rgba(32, 201, 107, 0.20);
+}
+
+
 /* MANAGEMENT */
 
 .management-card {
@@ -450,6 +609,12 @@ section {
 .manager-name {
     font-size: 15px;
     font-weight: 800;
+}
+
+.manager-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .manager-phone {
@@ -485,6 +650,86 @@ section {
 }
 
 
+/* COPY BUTTON */
+
+.copy-btn {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #F5D9F1;
+    border-radius: 10px;
+
+    background: #FFF0FD;
+    color: var(--primary-dark);
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 5px 12px rgba(246, 0, 223, 0.18);
+}
+
+.copy-btn:active {
+    transform: scale(0.90);
+}
+
+.copy-btn.copied {
+    background: #20C96B;
+    color: white;
+    border-color: #20C96B;
+}
+
+
+/* COPY TOAST */
+
+.copy-toast {
+    position: fixed;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translate(-50%, 20px);
+
+    background: #29212B;
+    color: white;
+
+    padding: 11px 20px;
+    border-radius: 12px;
+
+    font-family: "Cairo", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all 0.3s ease;
+    z-index: 9999;
+
+    white-space: nowrap;
+}
+
+.copy-toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+
 /* FOOTER */
 
 .footer {
@@ -508,7 +753,8 @@ section {
 
 /* INTERACTION FEEDBACK */
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
     outline: 3px solid var(--primary);
     outline-offset: 4px;
     border-radius: 12px;
@@ -525,6 +771,7 @@ a:focus-visible {
 .reveal {
     opacity: 0;
     transform: translateY(18px);
+
     transition:
         opacity 0.65s ease,
         transform 0.65s ease;
@@ -547,6 +794,82 @@ a:focus-visible {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+
+/* LOGO 3D FLIP */
+
+.logo-flip {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    animation: logoFlip 7s ease-in-out infinite;
+}
+
+.logo-face {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.logo-face-front {
+    background: #FFFFFF;
+}
+
+.logo-face-front .logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.logo-face-back {
+    transform: rotateY(180deg);
+
+    background: linear-gradient(
+        145deg,
+        #F600DF,
+        #BD00A9
+    );
+
+    color: #FFFFFF;
+    text-align: center;
+    padding: 8px;
+}
+
+.logo-face-back span {
+    font-family: "Cairo", sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.7;
+
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes logoFlip {
+    0%, 35% {
+        transform: rotateY(0deg);
+    }
+
+    45%, 85% {
+        transform: rotateY(180deg);
+    }
+
+    95%, 100% {
+        transform: rotateY(360deg);
     }
 }
 
@@ -598,6 +921,34 @@ a:focus-visible {
     .manager-name {
         font-size: 14px;
     }
+
+    .manager-actions {
+        gap: 6px;
+    }
+
+    .copy-btn {
+        width: 31px;
+        height: 31px;
+    }
+
+    .services-card {
+        padding: 15px 9px;
+    }
+
+    .services-grid {
+        gap: 15px 5px;
+    }
+
+    .service-logo {
+        width: 49px;
+        height: 49px;
+        font-size: 22px;
+        border-radius: 15px;
+    }
+
+    .offered-service span {
+        font-size: 11px;
+    }
 }
 
 
@@ -617,195 +968,7 @@ a:focus-visible {
         opacity: 1;
         transform: none;
     }
-}
-/* WhatsApp Channel */
 
-.whatsapp-channel {
-    color: #20C96B;
-    background: #EDFFF4;
-    border: 1px solid #D5F7E2;
-}
-
-.whatsapp-channel:hover {
-    background: #20C96B;
-    color: white;
-    border-color: #20C96B;
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 22px rgba(32, 201, 107, 0.20);
-}
-
-/* =================================
-   COPY PHONE BUTTON
-================================= */
-
-.manager-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.copy-btn {
-    width: 34px;
-    height: 34px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border: 1px solid #F5D9F1;
-    border-radius: 10px;
-
-    background: #FFF0FD;
-    color: var(--primary-dark);
-
-    font-size: 14px;
-    cursor: pointer;
-
-    transition: all 0.3s ease;
-}
-
-.copy-btn:hover {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-
-    transform: translateY(-3px);
-    box-shadow: 0 5px 12px rgba(246, 0, 223, 0.18);
-}
-
-.copy-btn:active {
-    transform: scale(0.90);
-}
-
-.copy-btn.copied {
-    background: #20C96B;
-    color: white;
-    border-color: #20C96B;
-}
-
-
-/* Copy Toast Notification */
-
-.copy-toast {
-    position: fixed;
-
-    bottom: 25px;
-    left: 50%;
-
-    transform: translate(-50%, 20px);
-
-    background: #29212B;
-    color: white;
-
-    padding: 11px 20px;
-    border-radius: 12px;
-
-    font-family: "Cairo", sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: all 0.3s ease;
-    z-index: 9999;
-
-    white-space: nowrap;
-}
-
-.copy-toast.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-50%, 0);
-}
-
-@media (max-width: 380px) {
-    .manager-actions {
-        gap: 6px;
-    }
-
-    .copy-btn {
-        width: 31px;
-        height: 31px;
-    }
-}
-/* ==========================================
-   AQLAM LOGO - 3D FLIP ANIMATION
-========================================== */
-
-.logo-wrapper {
-    perspective: 1000px;
-}
-
-.logo-flip {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: logoFlip 7s ease-in-out infinite;
-}
-
-.logo-face {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-    overflow: hidden;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-.logo-face-front {
-    background: #FFFFFF;
-}
-
-.logo-face-front .logo {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.logo-face-back {
-    transform: rotateY(180deg);
-
-    background: linear-gradient(
-        145deg,
-        #F600DF,
-        #BD00A9
-    );
-
-    color: #FFFFFF;
-    text-align: center;
-    padding: 8px;
-}
-
-.logo-face-back span {
-    font-family: "Cairo", sans-serif;
-    font-size: 12px;
-    font-weight: 900;
-    line-height: 1.7;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
-
-@keyframes logoFlip {
-    0%, 35% {
-        transform: rotateY(0deg);
-    }
-
-    45%, 85% {
-        transform: rotateY(180deg);
-    }
-
-    95%, 100% {
-        transform: rotateY(360deg);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
     .logo-flip {
         animation: none;
     }
