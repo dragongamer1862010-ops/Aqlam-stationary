@@ -1,11 +1,15 @@
 
 <!doctype html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="icon" type="image/png" href="assets/logo.png" />
+
     <meta name="theme-color" content="#F600DF" />
+
     <meta
         name="description"
         content="AQLAM Stationery - مكتبة أقلام للأدوات المكتبية ولعب الأطفال"
@@ -13,7 +17,7 @@
 
     <title>AQLAM Stationery</title>
 
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -22,6 +26,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
@@ -30,98 +35,243 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css" />
 
+    <!-- Services Layout -->
+    <style>
+        .services-card {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 13px;
+            padding: 18px;
+
+            background: rgba(255,255,255,0.95);
+            border: 1px solid rgba(246,0,223,0.10);
+            border-radius: 22px;
+
+            box-shadow: 0 12px 35px rgba(72,30,66,0.065);
+        }
+
+        .service-item {
+            position: relative;
+            isolation: isolate;
+            overflow: visible !important;
+
+            min-height: 100px;
+            padding: 12px 5px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            border: 1px solid #F9DDF5;
+            border-radius: 17px;
+
+            background: #FFF8FE;
+            color: #BD00A9;
+
+            font-family: "Cairo", sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+
+            cursor: pointer;
+            transition: 0.35s cubic-bezier(.2,.8,.2,1);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .service-item i {
+            font-size: 27px;
+            transition: 0.35s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            background: #FCEBFA;
+            border-color: #F600DF;
+            box-shadow: 0 9px 20px rgba(246,0,223,0.12);
+        }
+
+        .service-item:hover i {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .service-item:active {
+            transform: scale(.94);
+        }
+
+        .service-item:focus-visible {
+            outline: 3px solid #F600DF;
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 380px) {
+            .services-card {
+                gap: 9px;
+                padding: 13px;
+            }
+
+            .service-item {
+                min-height: 90px;
+                font-size: 11px;
+            }
+
+            .service-item i {
+                font-size: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .service-item,
+            .service-item i {
+                transition: none;
+            }
+        }
+    </style>
+
     <!-- JavaScript -->
     <script src="js/script.js" defer></script>
+
 </head>
 
 <body>
+
 <main class="main-container">
 
     <!-- HEADER -->
+
     <header class="hero">
 
         <div class="logo-wrapper">
+
             <div class="logo-flip">
 
                 <div class="logo-face logo-face-front">
+
                     <img
                         src="assets/logo.png"
                         alt="AQLAM Stationery Logo"
                         class="logo"
                     />
+
                 </div>
 
                 <div class="logo-face logo-face-back" dir="rtl">
-                    <span>معاك على<br />طريق النجاح</span>
+
+                    <span>
+                        معاك على<br />
+                        طريق النجاح
+                    </span>
+
                 </div>
 
             </div>
+
         </div>
 
         <h1>AQLAM Stationery</h1>
+
         <p>مكتبة أقلام</p>
 
     </header>
 
 
     <!-- SERVICES -->
+
     <section class="services-section">
 
         <h2 class="section-title">خدماتنا</h2>
 
         <div class="services-card">
 
-            <div class="services-grid">
+            <!-- PRINTING -->
 
-                <!-- Printing -->
-                <div class="offered-service">
-                    <div class="service-logo printing-logo">
-                        <i class="fa-solid fa-print"></i>
-                    </div>
-                    <span>طباعة</span>
-                </div>
+            <button
+                type="button"
+                class="service-item"
+                data-effect="printing"
+                aria-label="الطباعة"
+            >
+                <i class="fa-solid fa-print"></i>
+                <span>الطباعة</span>
+            </button>
 
-                <!-- Document Photocopy -->
-                <div class="offered-service">
-                    <div class="service-logo photocopy-logo">
-                        <i class="fa-solid fa-copy"></i>
-                    </div>
-                    <span>تصوير مستندات</span>
-                </div>
 
-                <!-- Binding -->
-                <div class="offered-service">
-                    <div class="service-logo binding-logo">
-                        <i class="fa-solid fa-book-open"></i>
-                    </div>
-                    <span>تغليف و تكعيب</span>
-                </div>
+            <!-- DOCUMENT COPYING -->
 
-                <!-- External Books -->
-                <div class="offered-service">
-                    <div class="service-logo books-logo">
-                        <i class="fa-solid fa-book"></i>
-                    </div>
-                    <span>كتب خارجية</span>
-                </div>
+            <button
+                type="button"
+                class="service-item"
+                data-effect="copy"
+                aria-label="تصوير مستندات"
+            >
+                <i class="fa-solid fa-copy"></i>
+                <span>تصوير مستندات</span>
+            </button>
 
-                <!-- Stationery -->
-                <div class="offered-service">
-                    <div class="service-logo stationery-logo">
-                        <i class="fa-solid fa-pencil"></i>
-                    </div>
-                    <span>أدوات مكتبية</span>
-                </div>
 
-                <!-- Toys and Gifts -->
-                <div class="offered-service">
-                    <div class="service-logo gifts-logo">
-                        <i class="fa-solid fa-gift"></i>
-                    </div>
-                    <span>ألعاب و هدايا</span>
-                </div>
+            <!-- BINDING -->
 
-            </div>
+            <button
+                type="button"
+                class="service-item"
+                data-effect="binding"
+                aria-label="تغليف وتكعيب"
+            >
+                <i class="fa-solid fa-book-open"></i>
+                <span>تغليف وتكعيب</span>
+            </button>
+
+
+            <!-- EXTERNAL BOOKS -->
+
+            <button
+                type="button"
+                class="service-item"
+                data-effect="books"
+                aria-label="كتب خارجية"
+            >
+                <i class="fa-solid fa-book"></i>
+                <span>كتب خارجية</span>
+            </button>
+
+
+            <!-- STATIONERY -->
+
+            <button
+                type="button"
+                class="service-item"
+                data-effect="stationery"
+                aria-label="أدوات مكتبية"
+            >
+                <i class="fa-solid fa-pencil"></i>
+                <span>أدوات مكتبية</span>
+            </button>
+
+
+            <!-- GAMES -->
+
+            <button
+                type="button"
+                class="service-item"
+                data-effect="games"
+                aria-label="ألعاب"
+            >
+                <i class="fa-solid fa-puzzle-piece"></i>
+                <span>ألعاب</span>
+            </button>
+
+
+            <!-- GIFTS -->
+
+            <button
+                type="button"
+                class="service-item"
+                data-effect="gifts"
+                aria-label="هدايا"
+            >
+                <i class="fa-solid fa-gift"></i>
+                <span>هدايا</span>
+            </button>
 
         </div>
 
@@ -129,6 +279,7 @@
 
 
     <!-- SOCIAL MEDIA -->
+
     <section class="social-section">
 
         <h2 class="section-title">تابعونا</h2>
@@ -146,6 +297,7 @@
                 <i class="fa-brands fa-facebook-f"></i>
             </a>
 
+
             <a
                 href="https://www.instagram.com/aqlamstationery/"
                 class="social-icon instagram"
@@ -156,6 +308,7 @@
             >
                 <i class="fa-brands fa-instagram"></i>
             </a>
+
 
             <a
                 href="https://whatsapp.com/channel/0029VbCVDs16hENjyCQoum0S"
@@ -174,19 +327,27 @@
 
 
     <!-- BRANCHES -->
+
     <section class="branches-section">
 
         <h2 class="section-title">فروعنا</h2>
 
         <div class="branches-card">
 
-            <!-- Branch 1 -->
+            <!-- BRANCH 1 -->
+
             <div class="branch">
 
                 <div class="branch-details">
-                    <span class="branch-status">الفرع الرئيسي</span>
+
+                    <span class="branch-status">
+                        الفرع الرئيسي
+                    </span>
+
                     <h3>فرع الواحة</h3>
+
                 </div>
+
 
                 <div class="branch-links">
 
@@ -200,6 +361,7 @@
                     >
                         <i class="fa-brands fa-whatsapp"></i>
                     </a>
+
 
                     <a
                         href="https://www.google.com/maps/place/%D9%85%D9%83%D8%AA%D8%A8%D8%A9+%D8%A3%D9%82%D9%84%D8%A7%D9%85+%D9%84%D9%84%D8%A3%D8%AF%D9%88%D8%A7%D8%AA+%D8%A7%D9%84%D9%85%D9%83%D8%AA%D8%A8%D9%8A%D8%A9+%D9%88%D9%84%D8%B9%D8%A8+%D8%A7%D9%84%D8%A3%D8%B7%D9%81%D8%A7%D9%84%E2%80%AD/@30.0398056,31.3754722,17z/data=!4m12!1m5!3m4!2zMzDCsDAyJzIzLjMiTiAzMcKwMjInMzEuNyJF!8m2!3d30.0398056!4d31.3754722!3m5!1s0x14583d457c440391:0x8458ad21cbb7b8e1!8m2!3d30.0397027!4d31.375607!16s%2Fg%2F11jx0yn2qk?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D"
@@ -216,15 +378,24 @@
 
             </div>
 
+
             <div class="branch-divider"></div>
 
-            <!-- Branch 2 -->
+
+            <!-- BRANCH 2 -->
+
             <div class="branch">
 
                 <div class="branch-details">
-                    <span class="branch-status new">الفرع الجديد</span>
+
+                    <span class="branch-status new">
+                        الفرع الجديد
+                    </span>
+
                     <h3>فرع إيست بارك</h3>
+
                 </div>
+
 
                 <div class="branch-links">
 
@@ -238,6 +409,7 @@
                     >
                         <i class="fa-brands fa-whatsapp"></i>
                     </a>
+
 
                     <a
                         href="https://www.google.com/maps/search/?api=1&query=30.03760682052661%2C31.362231485545635"
@@ -260,13 +432,15 @@
 
 
     <!-- MANAGEMENT -->
+
     <section class="management-section">
 
         <h2 class="section-title">الإدارة</h2>
 
         <div class="management-card">
 
-            <!-- Manager Mohamed -->
+            <!-- MANAGER MOHAMED -->
+
             <div class="manager">
 
                 <span class="manager-name">أ. محمد</span>
@@ -279,8 +453,10 @@
                         aria-label="اتصال بأستاذ محمد"
                     >
                         <i class="fa-solid fa-phone"></i>
+
                         <span dir="ltr">01006123004</span>
                     </a>
+
 
                     <button
                         class="copy-btn"
@@ -296,9 +472,12 @@
 
             </div>
 
+
             <div class="manager-divider"></div>
 
-            <!-- Manager Mostafa -->
+
+            <!-- MANAGER MOSTAFA -->
+
             <div class="manager">
 
                 <span class="manager-name">أ. مصطفى</span>
@@ -311,8 +490,10 @@
                         aria-label="اتصال بأستاذ مصطفى"
                     >
                         <i class="fa-solid fa-phone"></i>
+
                         <span dir="ltr">01220309783</span>
                     </a>
+
 
                     <button
                         class="copy-btn"
@@ -333,7 +514,8 @@
     </section>
 
 
-    <!-- Copy Notification -->
+    <!-- COPY NOTIFICATION -->
+
     <div
         id="copy-toast"
         class="copy-toast"
@@ -345,6 +527,7 @@
 
 
     <!-- FOOTER -->
+
     <footer class="footer">
 
         <p>
@@ -356,5 +539,6 @@
     </footer>
 
 </main>
+
 </body>
 </html>
