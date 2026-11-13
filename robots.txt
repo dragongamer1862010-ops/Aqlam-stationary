@@ -1,0 +1,7 @@
+
+# Allow search engines to crawl the website
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://dragongamer1862010-ops.github.io/Aqlam-stationary/sitemap.xml
