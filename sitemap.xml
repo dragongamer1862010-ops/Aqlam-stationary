@@ -1,16 +1,6 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!-- AQLAM Stationery XML Sitemap -->
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    <!-- الصفحة الرئيسية للموقع -->
-
     <url>
         <loc>https://dragongamer1862010-ops.github.io/Aqlam-stationary/</loc>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
     </url>
-
 </urlset>
