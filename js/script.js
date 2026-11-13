@@ -178,3 +178,146 @@ copyButtons.forEach((button) => {
     });
 
 });
+
+/* ==========================================
+   AQLAM - RANDOM SERVICE OBJECT BURST
+========================================== */
+
+const serviceObjects = {
+
+    games: ["🧩", "🧸", "🪀", "🚀", "🎲", "🪁"],
+
+    binding: ["📚", "📎", "🌀", "📏", "📒", "🔗"],
+
+    copy: ["📄", "📑", "🗒️", "📃", "🖨️"],
+
+    printing: ["🖨️", "📃", "🖋️", "📄", "✨"],
+
+    stationery: ["✏️", "📏", "🖊️", "🧮", "📌", "📐"],
+
+    books: ["📚", "📖", "📕", "📗", "✨"],
+
+    gifts: ["🎁", "🎀", "⭐", "💝", "🎉"]
+
+};
+
+const sparkColors = [
+    "#F600DF",
+    "#FFD700",
+    "#20C96B",
+    "#FF8C42",
+    "#8B5CF6",
+    "#38BDF8"
+];
+
+function randomNumber(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+document.addEventListener("click", (event) => {
+
+    const button = event.target.closest("[data-effect]");
+
+    if (!button) return;
+
+    const effect = button.dataset.effect;
+    const objects = serviceObjects[effect];
+
+    if (!objects) return;
+
+    // Create burst container
+
+    const container = document.createElement("div");
+
+    container.className = "burst-container";
+
+    button.appendChild(container);
+
+
+    // Create flying objects
+
+    const objectCount = Math.floor(randomNumber(5, 9));
+
+    for (let i = 0; i < objectCount; i++) {
+
+        const item = document.createElement("span");
+
+        item.className = "burst-item";
+
+        item.textContent =
+            objects[Math.floor(Math.random() * objects.length)];
+
+        item.style.setProperty(
+            "--x",
+            `${randomNumber(-85, 85)}px`
+        );
+
+        item.style.setProperty(
+            "--rise",
+            `${randomNumber(65, 115)}px`
+        );
+
+        item.style.setProperty(
+            "--fall",
+            `${randomNumber(35, 85)}px`
+        );
+
+        item.style.setProperty(
+            "--rotate",
+            `${randomNumber(-180, 180)}deg`
+        );
+
+        item.style.setProperty(
+            "--size",
+            `${randomNumber(19, 30)}px`
+        );
+
+        item.style.setProperty(
+            "--delay",
+            `${randomNumber(0, .12)}s`
+        );
+
+        container.appendChild(item);
+
+    }
+
+
+    // Create fireworks
+
+    for (let i = 0; i < 10; i++) {
+
+        const spark = document.createElement("span");
+
+        spark.className = "burst-spark";
+
+        spark.style.setProperty(
+            "--spark-x",
+            `${randomNumber(-65, 65)}px`
+        );
+
+        spark.style.setProperty(
+            "--spark-y",
+            `${randomNumber(-75, 75)}px`
+        );
+
+        spark.style.setProperty(
+            "--spark-color",
+            sparkColors[
+                Math.floor(Math.random() * sparkColors.length)
+            ]
+        );
+
+        container.appendChild(spark);
+
+    }
+
+
+    // Remove animation elements
+
+    setTimeout(() => {
+
+        container.remove();
+
+    }, 1700);
+
+});
