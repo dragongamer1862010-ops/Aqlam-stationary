@@ -973,3 +973,123 @@ button:focus-visible {
         animation: none;
     }
 }
+
+/* ==========================================
+   AQLAM - MINI OBJECT BURST EFFECT
+========================================== */
+
+.service-item,
+[data-effect] {
+    position: relative;
+    overflow: visible !important;
+    isolation: isolate;
+}
+
+.burst-container {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.burst-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: var(--size, 25px);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    filter: drop-shadow(0 3px 3px rgba(80, 20, 70, .15));
+
+    animation: objectBurst 1.35s
+        cubic-bezier(.2,.7,.3,1) forwards;
+
+    animation-delay: var(--delay, 0s);
+}
+
+@keyframes objectBurst {
+
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.2);
+    }
+
+    12% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+
+    40% {
+        opacity: 1;
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% - var(--rise))
+            )
+            rotate(var(--rotate));
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--fall))
+            )
+            rotate(calc(var(--rotate) * 2))
+            scale(.65);
+    }
+}
+
+
+/* FIREWORK SPARKS */
+
+.burst-spark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+    background: var(--spark-color);
+
+    box-shadow: 0 0 9px var(--spark-color);
+
+    pointer-events: none;
+
+    animation: sparkBurst .75s ease-out forwards;
+}
+
+@keyframes sparkBurst {
+
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(
+                calc(-50% + var(--spark-x)),
+                calc(-50% + var(--spark-y))
+            )
+            scale(.1);
+    }
+}
+
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .burst-item,
+    .burst-spark {
+        animation-duration: .01ms !important;
+    }
+
+}
