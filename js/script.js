@@ -3,7 +3,8 @@
    AQLAM STATIONERY - INTERACTIVE EFFECTS
 ========================================== */
 
-// 1. Automatic Footer Year
+
+/* 1. AUTOMATIC FOOTER YEAR */
 
 const yearElement = document.getElementById("current-year");
 
@@ -12,10 +13,10 @@ if (yearElement) {
 }
 
 
-// 2. Smooth Reveal On Scroll
+/* 2. SMOOTH REVEAL ON SCROLL */
 
 const revealElements = document.querySelectorAll(
-    ".branches-section, .social-section, .management-section, .footer"
+    ".services-section, .social-section, .branches-section, .management-section, .footer"
 );
 
 if ("IntersectionObserver" in window) {
@@ -26,7 +27,9 @@ if ("IntersectionObserver" in window) {
             entries.forEach((entry) => {
 
                 if (entry.isIntersecting) {
+
                     entry.target.classList.add("visible");
+
                     observer.unobserve(entry.target);
                 }
 
@@ -40,20 +43,25 @@ if ("IntersectionObserver" in window) {
     );
 
     revealElements.forEach((element) => {
+
         element.classList.add("reveal");
+
         revealObserver.observe(element);
+
     });
 
 } else {
 
     revealElements.forEach((element) => {
+
         element.classList.add("visible");
+
     });
 
 }
 
 
-// 3. Interactive Press Effect
+/* 3. INTERACTIVE PRESS EFFECT */
 
 const interactiveLinks = document.querySelectorAll(
     ".service-icon, .social-icon, .manager-phone"
@@ -62,13 +70,17 @@ const interactiveLinks = document.querySelectorAll(
 interactiveLinks.forEach((link) => {
 
     link.addEventListener("pointerdown", () => {
+
         link.classList.add("is-pressed");
+
     });
 
     ["pointerup", "pointerleave", "pointercancel"].forEach((eventName) => {
 
         link.addEventListener(eventName, () => {
+
             link.classList.remove("is-pressed");
+
         });
 
     });
@@ -76,66 +88,90 @@ interactiveLinks.forEach((link) => {
 });
 
 
-// 4. Copy Manager Phone Numbers
+/* 4. COPY MANAGER PHONE NUMBERS */
 
 const copyButtons = document.querySelectorAll(".copy-btn");
+
 const copyToast = document.getElementById("copy-toast");
 
 let toastTimeout;
+
+function showCopyToast(message, duration = 2200) {
+
+    if (!copyToast) return;
+
+    copyToast.textContent = message;
+
+    copyToast.classList.add("show");
+
+    clearTimeout(toastTimeout);
+
+    toastTimeout = setTimeout(() => {
+
+        copyToast.classList.remove("show");
+
+    }, duration);
+
+}
+
 
 copyButtons.forEach((button) => {
 
     button.addEventListener("click", async () => {
 
         const phoneNumber = button.dataset.copy;
+
         const icon = button.querySelector("i");
+
+        if (!phoneNumber) return;
 
         try {
 
             await navigator.clipboard.writeText(phoneNumber);
 
-            // Change icon to check mark
+            /* Change icon to check mark */
+
             button.classList.add("copied");
 
-            icon.classList.remove("fa-copy");
-            icon.classList.add("fa-check");
+            if (icon) {
 
-            // Show notification
-            if (copyToast) {
-                copyToast.textContent = "تم نسخ الرقم بنجاح ✓";
-                copyToast.classList.add("show");
+                icon.classList.remove("fa-copy");
 
-                clearTimeout(toastTimeout);
+                icon.classList.add("fa-check");
 
-                toastTimeout = setTimeout(() => {
-                    copyToast.classList.remove("show");
-                }, 2200);
             }
 
-            // Restore original icon
+
+            /* Show success notification */
+
+            showCopyToast("تم نسخ الرقم بنجاح ✓", 2200);
+
+
+            /* Restore original icon */
+
             setTimeout(() => {
 
                 button.classList.remove("copied");
 
-                icon.classList.remove("fa-check");
-                icon.classList.add("fa-copy");
+                if (icon) {
+
+                    icon.classList.remove("fa-check");
+
+                    icon.classList.add("fa-copy");
+
+                }
 
             }, 1800);
 
+
         } catch (error) {
 
-            if (copyToast) {
-                copyToast.textContent =
-                    "تعذر النسخ، حاول فتح الموقع باتصال آمن";
+            /* Show error notification */
 
-                copyToast.classList.add("show");
-
-                clearTimeout(toastTimeout);
-
-                toastTimeout = setTimeout(() => {
-                    copyToast.classList.remove("show");
-                }, 2500);
-            }
+            showCopyToast(
+                "تعذر النسخ، حاول فتح الموقع باتصال آمن",
+                2500
+            );
 
         }
 
