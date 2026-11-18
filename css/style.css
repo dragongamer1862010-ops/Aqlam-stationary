@@ -770,3 +770,28 @@ a:focus-visible {
     animation: none;
   }
 }
+
+/* Language Switcher */
+.language-toggle {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 9999;
+  padding: 8px 15px;
+  border: 1px solid rgba(246, 0, 223, 0.35);
+  border-radius: 10px;
+  background: #fff;
+  color: #F600DF;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.language-toggle:hover {
+  background: #F600DF;
+  color: #fff;
+  transform: translateY(-2px);
+}
