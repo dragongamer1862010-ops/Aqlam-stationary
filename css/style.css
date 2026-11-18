@@ -791,7 +791,7 @@ a:focus-visible {
 }
 
 .language-toggle:hover {
-  background: #F600DF;
-  color: #fff;
+  background: #fff;
+  color: #F600DF;
   transform: translateY(-2px);
 }
