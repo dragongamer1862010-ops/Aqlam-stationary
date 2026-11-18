@@ -361,3 +361,176 @@ copyButtons.forEach((button) => {
   });
 
 });
+
+/* =====================================
+   AQLAM LANGUAGE SWITCHER
+===================================== */
+
+(() => {
+  const button = document.getElementById("languageToggle");
+
+  if (!button) return;
+
+  const translations = {
+    ar: {
+      ".hero p": "مكتبة أقلام للأدوات المكتبية و لعب الأطفال",
+      ".logo-face-back span": "معاك على<br>طريق النجاح",
+
+      ".services-section .section-title": "خدماتنا",
+      ".service-button:nth-child(1) span:last-child": "طباعة",
+      ".service-button:nth-child(2) span:last-child": "تصوير مستندات",
+      ".service-button:nth-child(3) span:last-child": "تغليف وتكعيب",
+      ".service-button:nth-child(4) span:last-child": "كتب خارجية",
+      ".service-button:nth-child(5) span:last-child": "أدوات مكتبية",
+      ".service-button:nth-child(6) span:last-child": "ألعاب وهدايا",
+
+      ".social-section .section-title": "تابعونا",
+
+      ".branches-section .section-title": "فروعنا",
+      ".branch:first-child .branch-status": "الفرع الرئيسي",
+      ".branch:first-child h3": "فرع الواحة",
+      ".branch:last-child .branch-status": "الفرع الجديد",
+      ".branch:last-child h3": "فرع إيست بارك",
+
+      ".management-section .section-title": "الإدارة",
+      ".manager:first-child .manager-name": "أ. محمد",
+      ".manager:last-child .manager-name": "أ. مصطفى",
+
+      "#copy-toast": "تم نسخ الرقم بنجاح"
+    },
+
+    en: {
+      ".hero p": "AQLAM Stationery for Office Supplies and Toys",
+      ".logo-face-back span": "With You on<br>Your Road to Success",
+
+      ".services-section .section-title": "Our Services",
+      ".service-button:nth-child(1) span:last-child": "Printing",
+      ".service-button:nth-child(2) span:last-child": "Document Copying",
+      ".service-button:nth-child(3) span:last-child": "Binding & Packaging",
+      ".service-button:nth-child(4) span:last-child": "Educational Books",
+      ".service-button:nth-child(5) span:last-child": "Stationery",
+      ".service-button:nth-child(6) span:last-child": "Toys & Gifts",
+
+      ".social-section .section-title": "Follow Us",
+
+      ".branches-section .section-title": "Our Branches",
+      ".branch:first-child .branch-status": "Main Branch",
+      ".branch:first-child h3": "Al Waha Branch",
+      ".branch:last-child .branch-status": "New Branch",
+      ".branch:last-child h3": "East Park Branch",
+
+      ".management-section .section-title": "Management",
+      ".manager:first-child .manager-name": "Mr. Mohamed",
+      ".manager:last-child .manager-name": "Mr. Mostafa",
+
+      "#copy-toast": "Number copied successfully"
+    }
+  };
+
+  const attributes = {
+    ".branch:first-child .whatsapp": "WhatsApp - Al Waha Branch",
+    ".branch:first-child .maps": "Al Waha Branch Location",
+    ".branch:last-child .whatsapp": "WhatsApp - East Park Branch",
+    ".branch:last-child .maps": "East Park Branch Location",
+    ".manager:first-child .manager-phone": "Call Mr. Mohamed",
+    ".manager:last-child .manager-phone": "Call Mr. Mostafa",
+    ".manager:first-child .copy-btn": "Copy Mr. Mohamed's Number",
+    ".manager:last-child .copy-btn": "Copy Mr. Mostafa's Number"
+  };
+
+  function setLanguage(lang) {
+    const selected = translations[lang];
+
+    if (!selected) return;
+
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+    Object.entries(selected).forEach(([selector, value]) => {
+      const element = document.querySelector(selector);
+
+      if (!element) return;
+
+      if (selector === ".logo-face-back span") {
+        element.innerHTML = value;
+      } else {
+        element.textContent = value;
+      }
+    });
+
+    Object.entries(attributes).forEach(([selector, value]) => {
+      const element = document.querySelector(selector);
+      if (element) {
+        element.setAttribute("aria-label", lang === "en"
+          ? value
+          : getArabicLabel(selector));
+      }
+    });
+
+    button.textContent = lang === "ar" ? "EN" : "AR";
+
+    button.setAttribute(
+      "aria-label",
+      lang === "ar" ? "Switch to English" : "التغيير إلى العربية"
+    );
+
+    document.title = lang === "en"
+      ? "AQLAM Stationery | Office Supplies & Toys"
+      : "AQLAM Stationery | مكتبة أقلام للأدوات المكتبية";
+
+    document.querySelector('meta[name="language"]')
+      ?.setAttribute("content", lang === "en" ? "English" : "Arabic");
+
+    document.querySelector('meta[property="og:locale"]')
+      ?.setAttribute("content", lang === "en" ? "en_US" : "ar_EG");
+
+    const description = document.querySelector(
+      'meta[name="description"]'
+    );
+
+    if (description) {
+      description.setAttribute(
+        "content",
+        lang === "en"
+          ? "AQLAM Stationery - Office supplies, printing, document copying, binding, educational books, toys and gifts. Discover our branches and contact information."
+          : "AQLAM Stationery - مكتبة أقلام للأدوات المكتبية، طباعة وتصوير المستندات، التغليف والتكعيب، الكتب الخارجية، الألعاب والهدايا. تعرّف على فروعنا وطرق التواصل معنا."
+      );
+    }
+
+    try {
+      localStorage.setItem("aqlam-language", lang);
+    } catch (error) {
+      console.warn("Language preference could not be saved.");
+    }
+  }
+
+  function getArabicLabel(selector) {
+    const labels = {
+      ".branch:first-child .whatsapp": "واتساب فرع الواحة",
+      ".branch:first-child .maps": "موقع فرع الواحة",
+      ".branch:last-child .whatsapp": "واتساب فرع إيست بارك",
+      ".branch:last-child .maps": "موقع فرع إيست بارك",
+      ".manager:first-child .manager-phone": "اتصال بأستاذ محمد",
+      ".manager:last-child .manager-phone": "اتصال بأستاذ مصطفى",
+      ".manager:first-child .copy-btn": "نسخ رقم أستاذ محمد",
+      ".manager:last-child .copy-btn": "نسخ رقم أستاذ مصطفى"
+    };
+
+    return labels[selector] || "";
+  }
+
+  button.addEventListener("click", () => {
+    const current = document.documentElement.lang || "ar";
+    setLanguage(current === "ar" ? "en" : "ar");
+  });
+
+  let savedLanguage = "ar";
+
+  try {
+    savedLanguage = localStorage.getItem("aqlam-language") || "ar";
+  } catch (error) {
+    savedLanguage = "ar";
+  }
+
+  setLanguage(savedLanguage);
+})();
